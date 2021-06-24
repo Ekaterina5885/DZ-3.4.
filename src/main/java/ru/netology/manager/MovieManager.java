@@ -52,7 +52,7 @@ public class MovieManager {
     public MovieList[] getMovies() {
         int resultLength;
         if (movies.length > quantityMovies) {
-            resultLength = 10;
+            resultLength = quantityMovies;
         } else {
             resultLength = movies.length;
         }
