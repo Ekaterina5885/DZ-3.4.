@@ -62,10 +62,11 @@ public class MovieManagerTest {
     // Возвращает последние 5 фильмов;
     @Test
     public void shouldFindFiveMovies() {
-        MovieList[] returned = new MovieList[]{firstMovie, secondMovie, thirdMovie, fourthMovie, fifthMovie};
+        MovieList[] returned = new MovieList[]{tenthMovie, ninthMovie, eighthMovie, seventhMovie,
+                sixthMovie};
         doReturn(returned).when(repository).findAll();
 
-        MovieList[] expected = new MovieList[]{fifthMovie, fourthMovie, thirdMovie, secondMovie, firstMovie};
+        MovieList[] expected = new MovieList[]{sixthMovie, seventhMovie, eighthMovie, ninthMovie, tenthMovie};
         MovieList[] actual = manager.getAll();
         assertArrayEquals(expected, actual);
 
