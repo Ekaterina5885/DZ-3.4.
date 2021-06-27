@@ -55,7 +55,7 @@ public class MovieManagerRepositoryTest {
 
         MovieList[] expected = new MovieList[]{firstMovie, secondMovie, thirdMovie, fourthMovie,
                 sixthMovie, seventhMovie, eighthMovie, ninthMovie, tenthMovie};
-        MovieList[] actual = repository.getMovies();
+        MovieList[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
 
     }
@@ -63,6 +63,7 @@ public class MovieManagerRepositoryTest {
     // Возвращает объект по идентификатору;
     @Test
     public void shouldFindById() {
+
         MovieList actual = repository.findById(5);
         MovieList expected = fifthMovie;
         assertEquals(expected, actual);
@@ -71,14 +72,16 @@ public class MovieManagerRepositoryTest {
     // Возвращаемый объект отсутствует;
     @Test
     public void shouldNotReturnObject() {
-        MovieList actual = repository.findById(12);
+
         MovieList expected = null;
+        MovieList actual = repository.findById(12);
         assertEquals(expected, actual);
     }
 
     //  Полностью вычищает репозиторий;
     @Test
     public void shouldRemoveAll() {
+
         MovieList[] expected = new MovieList[0];
         MovieList[] actual = repository.removeAll();
     }

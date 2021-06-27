@@ -5,21 +5,20 @@ import lombok.NoArgsConstructor;
 import ru.netology.domain.MovieList;
 import ru.netology.repository.MovieManagerRepository;
 
+
 @NoArgsConstructor
 @Data
 
 public class MovieManager {
-
     private MovieManagerRepository repository;
     private int quantityMovies = 10;
-    private MovieList[] movies = new MovieList[0];
-
-    public MovieManager(MovieManagerRepository repo) {
-        repository = repo;
-    }
 
     public MovieManager(int quantityMovies) {
         this.quantityMovies = quantityMovies;
+    }
+
+    public MovieManager(MovieManagerRepository repo) {
+        repository = repo;
     }
 
     // Добавляет объект в массив;
@@ -48,20 +47,10 @@ public class MovieManager {
         repository.removeAll();
     }
 
-    //  Выдать фильмы в ленту;
-    public MovieList[] getMovies() {
-        int resultLength;
-        if (movies.length > quantityMovies) {
-            resultLength = quantityMovies;
-        } else {
-            resultLength = movies.length;
-        }
-        MovieList[] result = new MovieList[resultLength];
-        for (int i = 0; i < resultLength; i++) {
-            int index = movies.length - i - 1;
-            result[i] = movies[index];
-        }
-        return result;
-
-    }
 }
+
+
+
+
+
+

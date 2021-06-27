@@ -73,7 +73,22 @@ public class MovieManagerTest {
         verify(repository).findAll();
 
     }
+
+    // Возвращает 0 фильмов;
+    @Test
+    public void shouldFindZeroMovies() {
+        MovieList[] returned = new MovieList[]{};
+        doReturn(returned).when(repository).findAll();
+
+        MovieList[] expected = new MovieList[]{};
+        MovieList[] actual = manager.getAll();
+        assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
+
+    }
 }
+
 
 
 

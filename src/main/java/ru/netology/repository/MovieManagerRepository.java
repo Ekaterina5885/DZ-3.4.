@@ -1,14 +1,10 @@
 package ru.netology.repository;
 
-import lombok.Data;
 import ru.netology.domain.MovieList;
-
-@Data
 
 public class MovieManagerRepository {
 
     private MovieList[] movies = new MovieList[0];
-    private int quantityMovies = 10;
 
 // Возвращает массив всех хранящихся в массиве объектов;
 
