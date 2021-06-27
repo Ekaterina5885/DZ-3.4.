@@ -19,7 +19,7 @@ public class MovieManagerTest {
     private final MovieList tenthMovie = new MovieList(10, "MovieTitle-10", "comedy");
 
 
-    // Выдать фильмы в ленту в допустимом диапазоне;
+    // Выдать 10 фильмов в ленту;
     @Test
     public void getTenMovies() {
 
@@ -43,7 +43,7 @@ public class MovieManagerTest {
         assertArrayEquals(expected, actual);
     }
 
-    // Добавить в ленту 1 фильм;
+    // Выдать в ленту 1 фильм;
     @Test
     public void addOneMovie() {
         MovieManager manager = new MovieManager();
@@ -75,7 +75,7 @@ public class MovieManagerTest {
 
     // Выдать фильмы в ленту выше граничного значения;
     @Test
-    public void getMovieAbovelimitValue() {
+    public void getMovieAboveLimitValue() {
 
         MovieManager manager = new MovieManager(11);
         manager.addMovies(firstMovie);
@@ -96,4 +96,28 @@ public class MovieManagerTest {
         assertArrayEquals(expected, actual);
 
     }
+
+    // Выдать 0 фильмов в ленту;
+    @Test
+    public void getZeroMovies() {
+
+        MovieManager manager = new MovieManager(0);
+        manager.addMovies(firstMovie);
+        manager.addMovies(secondMovie);
+        manager.addMovies(thirdMovie);
+        manager.addMovies(fourthMovie);
+        manager.addMovies(fifthMovie);
+        manager.addMovies(sixthMovie);
+        manager.addMovies(seventhMovie);
+        manager.addMovies(eighthMovie);
+        manager.addMovies(ninthMovie);
+        manager.addMovies(tenthMovie);
+
+        MovieList[] expected = new MovieList[]{};
+        MovieList[] actual = manager.getMovies();
+
+        assertArrayEquals(expected, actual);
+
+    }
+
 }
