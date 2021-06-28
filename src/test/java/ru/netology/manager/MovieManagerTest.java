@@ -43,7 +43,7 @@ public class MovieManagerTest {
         repository.save(tenthMovie);
     }
 
-    // Возвращает массив всех хранящихся в массиве объектов;
+    // Выдать 10 фильмов в ленту;
     @Test
     public void shouldFindAll() {
         MovieList[] returned = new MovieList[]{firstMovie, secondMovie, thirdMovie, fourthMovie, fifthMovie,
@@ -59,14 +59,31 @@ public class MovieManagerTest {
 
     }
 
-    // Возвращает последние 5 фильмов;
+    // Выдать 9 фильмов в ленту;
     @Test
-    public void shouldFindFiveMovies() {
-        MovieList[] returned = new MovieList[]{tenthMovie, ninthMovie, eighthMovie, seventhMovie,
-                sixthMovie};
+    public void getMoviesToLimitValue() {
+        MovieList[] returned = new MovieList[]{firstMovie, secondMovie, thirdMovie, fourthMovie, fifthMovie,
+                sixthMovie, seventhMovie, eighthMovie, ninthMovie};
         doReturn(returned).when(repository).findAll();
 
-        MovieList[] expected = new MovieList[]{sixthMovie, seventhMovie, eighthMovie, ninthMovie, tenthMovie};
+        MovieList[] expected = new MovieList[]{ninthMovie, eighthMovie, seventhMovie, sixthMovie,
+                fifthMovie, fourthMovie, thirdMovie, secondMovie, firstMovie};
+        MovieList[] actual = manager.getAll();
+        assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
+
+    }
+
+    // Выдать фильмы в ленту выше граничного значения;
+    @Test
+    public void getMoviesAboveLimitValue() {
+        MovieList[] returned = new MovieList[]{firstMovie, secondMovie, thirdMovie, fourthMovie, fifthMovie,
+                sixthMovie, seventhMovie, eighthMovie, ninthMovie, tenthMovie};
+        doReturn(returned).when(repository).findAll();
+
+        MovieList[] expected = new MovieList[]{tenthMovie, ninthMovie, eighthMovie, seventhMovie,
+                sixthMovie, fifthMovie, fourthMovie, thirdMovie, secondMovie, firstMovie};
         MovieList[] actual = manager.getAll();
         assertArrayEquals(expected, actual);
 
