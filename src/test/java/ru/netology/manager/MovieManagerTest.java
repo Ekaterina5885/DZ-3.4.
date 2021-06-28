@@ -21,7 +21,7 @@ public class MovieManagerTest {
 
     // Выдать 10 фильмов в ленту;
     @Test
-    public void getTenMovies() {
+    public void shouldGetLimitMovies() {
 
         MovieManager manager = new MovieManager(10);
 
@@ -43,31 +43,23 @@ public class MovieManagerTest {
         assertArrayEquals(expected, actual);
     }
 
-    // Выдать в ленту 1 фильм;
+    // Выдать в ленту 9 фильмов;
     @Test
-    public void addOneMovie() {
+    public void shouldGetMoviesBelowLimitValue() {
         MovieManager manager = new MovieManager();
-
-        manager.addMovies(fifthMovie);
-
-        MovieList[] expected = new MovieList[]{fifthMovie};
-        MovieList[] actual = manager.getMovies();
-
-        assertArrayEquals(expected, actual);
-    }
-
-    // Выдать в ленту 5 фильмов;
-    @Test
-    public void getFiveMovies() {
-        MovieManager manager = new MovieManager(5);
 
         manager.addMovies(firstMovie);
         manager.addMovies(secondMovie);
         manager.addMovies(thirdMovie);
         manager.addMovies(fourthMovie);
         manager.addMovies(fifthMovie);
+        manager.addMovies(sixthMovie);
+        manager.addMovies(seventhMovie);
+        manager.addMovies(eighthMovie);
+        manager.addMovies(ninthMovie);
 
-        MovieList[] expected = new MovieList[]{fifthMovie, fourthMovie, thirdMovie, secondMovie, firstMovie};
+        MovieList[] expected = new MovieList[]{ninthMovie, eighthMovie, seventhMovie,
+                sixthMovie, fifthMovie, fourthMovie, thirdMovie, secondMovie, firstMovie};
         MovieList[] actual = manager.getMovies();
 
         assertArrayEquals(expected, actual);
@@ -75,7 +67,7 @@ public class MovieManagerTest {
 
     // Выдать фильмы в ленту выше граничного значения;
     @Test
-    public void getMovieAboveLimitValue() {
+    public void shouldGetMovieAboveLimitValue() {
 
         MovieManager manager = new MovieManager(11);
         manager.addMovies(firstMovie);
@@ -99,7 +91,7 @@ public class MovieManagerTest {
 
     // Выдать 0 фильмов в ленту;
     @Test
-    public void getZeroMovies() {
+    public void shouldGetZeroMovies() {
 
         MovieManager manager = new MovieManager(0);
         manager.addMovies(firstMovie);
